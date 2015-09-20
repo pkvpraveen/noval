@@ -6,9 +6,9 @@
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
 (function () {
-    var filenames =[];
+    var filenames = [];
     var imageMin = '';
-    var index=0;
+    var index = 0;
     $(function () {
         $('body').on('click', '.page-scroll a', function (event) {
             var $anchor = $(this);
@@ -21,7 +21,7 @@
 //for galary
         var fileExt = {};
         $.ajax({
-            url: '../img/portfolio/',
+            url: '../img/gallery/',
             success: function (data) {
                 //List all png or jpg or gif file names in the page
                 $(data).find('a:contains(".png"),a:contains(".jpg"),a:contains(".gif")').each(function () {
@@ -32,24 +32,25 @@
         });
     });
 
-    $('#portfolio-more').click(function () {
+    $('#gallery-more').click(function () {
         showFourImages();
     });
 
     function showFourImages() {
         var currentIndex = index;
-        for (var i = currentIndex; i < currentIndex + 4; i++) {
+        var nextRowCount = (filenames.length - currentIndex) >= 4 ? 4 : filenames.length - currentIndex;
+        for (var i = currentIndex; i < currentIndex + nextRowCount; i++) {
             index += 1;
             imageMin += '<div class="col-sm-3 col-xs-12">' +
-                '<a href="img/portfolio/' + filenames[i] + '" data-title="Installations" data-lightbox="installations">' +
-                '<img src="img/portfolio/' + filenames[i] + '" class="img-thumbnail lazyload" alt=""/>' +
+                '<a href="img/gallery/' + filenames[i] + '" data-title="Installations" data-lightbox="installations">' +
+                '<img src="img/gallery/' + filenames[i] + '" class="img-thumbnail lazyload" alt=""/>' +
                 '</a>' +
                 '<div class="caption"> </div>' +
                 '</div>';
         }
-        $("#portfolio-container").html(imageMin);
+        $("#gallery-container").html(imageMin);
         if (index >= filenames.length) {
-            $('#portfolio-more').hide();
+            $('#gallery-more').hide();
         }
     }
 
