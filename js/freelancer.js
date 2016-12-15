@@ -1,10 +1,3 @@
-/*!
- * Start Bootstrap - Freelancer Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
-// jQuery for page scrolling feature - requires jQuery Easing plugin
 (function () {
     var filenames = [];
     var imageMin = '';
@@ -25,7 +18,7 @@
             success: function (data) {
                 //List all png or jpg or gif file names in the page
                 $(data).find('a:contains(".png"),a:contains(".jpg"),a:contains(".gif")').each(function () {
-                    filenames.push(this.href.replace(window.location.host, "").replace("http:///", ""));
+                    filenames.push(this.href.replace(window.location.host, '').replace('http:///', ''));
                 });
                 showFourImages();
             }
@@ -48,7 +41,7 @@
                 '<div class="caption"> </div>' +
                 '</div>';
         }
-        $("#gallery-container").html(imageMin);
+        $('#gallery-container').html(imageMin);
         if (index >= filenames.length) {
             $('#gallery-more').hide();
         }
